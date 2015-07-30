@@ -8,6 +8,7 @@
     "faker": "^3.0.0",
     "pg": "^4.4.0",
     "pg-hstore": "^2.3.2",
+    "restify": "^3.0.3",
     "sequelize": "^3.5.1"
   },
   "devDependencies": {},

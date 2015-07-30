@@ -5,10 +5,8 @@ var faker = require('faker');
 models.sequelize
   .sync({force:true})
   .then(function(){
-    console.log("Database has been connected. Thank you for choosing Sequelize.");
-    //seed our data babies
     var productsArr = [];
-    for(var i=0; i < 5; i++){
+    for(var i=0; i < 10; i++){
       productsArr.push({
       name: faker.commerce.productName(),
       description: "It's " + faker.commerce.productAdjective() + " and "+ faker.commerce.productAdjective() + "!",
