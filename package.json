@@ -1,9 +1,9 @@
 {
   "name": "rest_shop",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "dependencies": {
+    "body-parser": "^1.13.2",
     "express": "^4.13.1",
     "faker": "^3.0.0",
     "pg": "^4.4.0",
