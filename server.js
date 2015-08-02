@@ -17,12 +17,20 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 
+server.use(
+  function crossOrigin(req,res,next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    return next();
+  }
+);
+
 //show all products
 server.get('/products', function (req, res, next) {
   models.Product
     .findAll()
     .then(function (products){
-      res.render('index', {products: products});
+      res.json(products);
     });
 });
 
@@ -31,20 +39,23 @@ server.get('/products/:id', function (req, res, next) {
   models.Product
     .findById(req.params.id)
     .then(function (product) {
-      res.render('product_view', {product: product});
+      res.json(product);
     });
 });
 
 //post an order
 server.post('/orders', function (req, res, next) {
+  var data = JSON.parse(req.body);
   models.Order
     .create ({
-      name: req.body.author,
-      product_id: req.body.product,
-      quantity: req.body.quantity
+      name: data.name,
+      product_id: data.product_id,
+      quantity: data.quantity
     })
     .then (function (order) {
       //subtract order quantity from inventory
+
+      res.json(order);
     })
   ;
 });
@@ -54,7 +65,7 @@ server.get('/orders', function (req, res, next) {
   models.Order
     .findAll()
     .then(function (orders) {
-      res.render('orders', {orders: orders});
+      res.json(orders);
     });
 });
 
@@ -63,7 +74,7 @@ server.get('/orders/:id', function (req, res, next) {
   models.Order
     .findById(req.params.id)
     .then(function (order) {
-      res.render('order_view', {order: order});
+      res.json('order_view', {order: order});
     });
 });
 

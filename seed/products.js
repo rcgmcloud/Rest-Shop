@@ -8,7 +8,7 @@ models.sequelize
   .then(function(){
     var productsArr = [];
     // TO CREATE RANDOM ITEMS
-    for(var i=0; i < 4; i++){
+    for(var i=0; i < 16; i++){
       productsArr.push({
       name: faker.commerce.productName(),
       description: "It's " + faker.commerce.productAdjective() + " and "+ faker.commerce.productAdjective() + "!",
@@ -20,22 +20,29 @@ models.sequelize
     //fill inventory table
   .then(function(){
     var inventoryArr = [
-      {
-        quantity: 25,
-        product_id: 1
-      },
-      {
-        quantity: 25,
-        product_id: 2
-      },
-      {
-        quantity: 25,
-        product_id: 3
-      },
-      {
-        quantity: 25,
-        product_id: 4
-      }
+      // {
+      //   quantity: 25,
+      //   product_id: 1
+      // },
+      // {
+      //   quantity: 25,
+      //   product_id: 2
+      // },
+      // {
+      //   quantity: 25,
+      //   product_id: 3
+      // },
+      // {
+      //   quantity: 25,
+      //   product_id: 4
+      // }
     ];
+    for(var i=0; i < 16; i++){
+          inventoryArr.push({
+          quantity: Math.floor(Math.random()*(500-10+1)+1),
+          product_id: i+1
+        });
+        }
+
     return Inventory.bulkCreate(inventoryArr);
 });
