@@ -75,7 +75,7 @@ server.get('/orders/:id', function (req, res, next) {
   models.Order
     .findById(req.params.id)
     .then(function (order) {
-      res.json('order_view', {order: order});
+      res.json(order);
     });
 });
 
