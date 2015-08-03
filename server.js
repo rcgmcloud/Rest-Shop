@@ -62,6 +62,7 @@ server.post('/orders', function (req, res, next) {
 
 //show orders
 server.get('/orders', function (req, res, next) {
+
   models.Order
     .findAll()
     .then(function (orders) {

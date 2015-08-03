@@ -12,34 +12,17 @@ models.sequelize
       productsArr.push({
       name: faker.commerce.productName(),
       description: "It's " + faker.commerce.productAdjective() + " and "+ faker.commerce.productAdjective() + "!",
-      price: parseFloat(faker.commerce.price())
+      price: parseFloat(faker.commerce.price(1, 120))
     });
     }
     return Product.bulkCreate(productsArr);
   })
     //fill inventory table
   .then(function(){
-    var inventoryArr = [
-      // {
-      //   quantity: 25,
-      //   product_id: 1
-      // },
-      // {
-      //   quantity: 25,
-      //   product_id: 2
-      // },
-      // {
-      //   quantity: 25,
-      //   product_id: 3
-      // },
-      // {
-      //   quantity: 25,
-      //   product_id: 4
-      // }
-    ];
+    var inventoryArr = [];
     for(var i=0; i < 16; i++){
           inventoryArr.push({
-          quantity: Math.floor(Math.random()*(500-10+1)+1),
+          quantity: Math.floor(Math.random()*(500-10+1)+10),
           product_id: i+1
         });
         }
